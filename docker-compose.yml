@@ -6,7 +6,7 @@ services:
     container_name: sample-db
     volumes:
       - ./db:/var/lib/mysql
-      - ./sample.init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init:/docker-entrypoint-initdb.d
     ports:
       - '3306:3306'
     environment:
