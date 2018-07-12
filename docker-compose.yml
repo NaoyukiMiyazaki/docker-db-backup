@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  sample-db:
+    image: buddyingdevelopment/mysql:5.6
+    container_name: sample-db
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./sample.init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: passw0rd
+      MYSQL_DATABASE: sample
+      MYSQL_USER: sample
+      MYSQL_PASSWORD: passw0rd
+
+  # sample-wp:
+  #   image: wordpress:4.9.7-php7.0-apache
+  #   container_name: sample-wp
+  #   depends_on:
+  #     - sample-db
+  #   ports:
+  #     - '80:80'
+  #   environment:
+  #     WORDPRESS_DB_HOST: sample-db
+  #     WORDPRESS_DB_USER: sample
+  #     WORDPRESS_DB_PASSWORD: passw0rd
+  #     WORDPRESS_DB_NAME: sample
+  #     WORDPRESS_DEBUG: 1
