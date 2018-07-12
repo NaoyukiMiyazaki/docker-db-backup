@@ -1,5 +1,9 @@
 #!/bin/sh
+container=sample-db
+dbuser=root
+dbpassword=passw0rd
+dbname=sample
 
-# TODO コンテナの確認をしないと空のファイルで上書きされてしまう
-docker exec sample-db /usr/bin/mysqldump -u root --password=passw0rd sample | gzip > init/init.sql.gz
-# docker exec sample-db /usr/bin/mysqldump -u root --password=passw0rd sample > init.sql
+# TODO コンテナの起動確認をしないと空のファイルで上書きされてしまう
+docker exec $container /usr/bin/mysqldump -u $dbuser --password=$dbpassword $dbname | gzip > init/test.init.sql.gz
+# 解凍 gunzip
